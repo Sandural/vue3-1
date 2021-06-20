@@ -1,20 +1,35 @@
+/**
+ * @Description  :
+ * @Author       : chen ming
+ * @Date         : 2021-06-03 21:39:17
+ * @LastEditors  : Please set LastEditors
+ * @LastEditTime : 2021-06-08 16:02:24
+ * @FilePath     : /vue3-1/src/router/index.ts
+ */
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/Home.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: () => import("../App.vue"),
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    path: "/user",
+    name: "user",
+    component: () => import("@/views/User/index.vue"),
+    children: [
+      {
+        path: "/user/areas",
+        name: "userAreas",
+        component: () => import("@/views/User/userAreas.vue"),
+      },
+    ],
+  },
+  {
+    path: "/user/:id",
+    name: "userProfile",
+    component: () => import("@/views/User/userProfile.vue"),
   },
 ];
 

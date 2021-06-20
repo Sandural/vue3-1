@@ -13,13 +13,11 @@ import store from "./store";
 import AntdUse from "./components/Ant/index";
 import "./common/styles/global.scss";
 // 引入mitt
-import mitt, { Emitter } from "mitt";
-const mitter: Emitter = mitt();
-
+import mitt from "mitt";
+const mitter = mitt();
 const app = createApp(App);
 AntdUse(app);
-
 // 加入全局变量中
 app.config.globalProperties.$mitter = mitter;
-
 app.use(store).use(router).mount("#app");
+//# sourceMappingURL=main.js.map
